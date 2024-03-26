@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shelf Stack</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="form-container">
@@ -24,19 +25,20 @@
           />
         </div>
         <div class="btns">
-          <input type="checkbox" name="read" id="read" />
-          <label for="read">Read ?</label>
-          <button>Add</button>
+          <div class="check-cont">
+            <input type="checkbox" name="read" id="read" />
+            <label for="read">Read ?</label>
+          </div>
+          <div class="check-cont">
+            <input type="checkbox" name="fav" id="fav" />
+            <label for="fav">Favourite</label>
+          </div>
         </div>
+        <button id="add-btn">Add</button>
       </div>
     </main>
 
-    <div class="books-arena">
-      <div class="book">
-        <div class="book-name">I'm Best</div>
-        <div class="book-author">Swarup Vishwas</div>
-        <div class="book-status read">Status : Read</div>
-      </div>
-    </div>
+    <div class="books-arena"></div>
+    <script src="./script.js"></script>
   </body>
 </html>
