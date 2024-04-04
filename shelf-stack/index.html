@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="modal-form">
+    <div class="modal-form" id="modal-form">
       <div class="form">
+        <h1>Update the Data</h1>
         <div class="inputs">
+          <input type="hidden" name="id" id="id" />
           <input
             type="text"
             name=""
@@ -23,18 +25,9 @@
             placeholder="Enter Book Author"
           />
         </div>
-        <div class="btns">
-          <div class="check-cont">
-            <input type="checkbox" name="read" id="modal-read" />
-            <label for="read">Read ?</label>
-          </div>
-          <div class="check-cont">
-            <input type="checkbox" name="fav" id="modal-fav" />
-            <label for="fav">Favourite</label>
-          </div>
-        </div>
+
         <div class="btns real-btns">
-          <button id="modal-add-btn">Add</button>
+          <button id="modal-add-btn">Update</button>
           <button id="modal-close-btn">Close</button>
         </div>
       </div>

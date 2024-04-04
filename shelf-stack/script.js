@@ -1,17 +1,17 @@
 var addBtn = document.querySelector("#add-btn");
 var arena = document.querySelector(".books-arena");
 
+var modalForm = document.querySelector("#modal-form")
+
 function Book(name, author, isRead, isFav) {
   this.name = name;
   this.author = author;
   this.isRead = isRead;
   this.isFav = isFav;
 
-  this.updateBook = function (name, author, isRead, isFav) {
+  this.updateBook = function (name, author) {
     this.author = author;
     this.name = name;
-    this.isFav = isFav;
-    this.isRead = isRead;
   }
 }
 
@@ -34,8 +34,45 @@ addBtn.addEventListener("click", () => {
 
   index++;
 
-  arena.innerHTML = "";
+  updateDom(books, arena);
 
+
+  document.querySelectorAll(".edit-btn").forEach(edit => {
+    edit.addEventListener("click", () => {
+      var clickedId = edit.parentElement.parentElement.id;
+      document.querySelector("#id").value = clickedId;
+      var currentBook;
+      Object.entries(books).forEach(entry => {
+        var [entryId, book] = entry
+
+        if (clickedId == entryId) {
+          console.log(clickedId);
+          currentBook = book;
+        }
+      })
+      console.log(currentBook);
+      document.querySelector("#modal-book-name").value = currentBook.name;
+      document.querySelector("#modal-book-author").value = currentBook.author;
+      document.querySelector("#modal-form").style.display = "flex";
+      document.querySelector("#modal-add-btn").addEventListener("click", () => {
+        var updatedName = document.querySelector("#modal-book-name").value;
+        var updatedAuthor = document.querySelector("#modal-book-author").value;
+        currentBook.updateBook(updatedName, updatedAuthor);
+        document.querySelector("#modal-form").style.display = "none";
+        updateDom(books, arena);
+      })
+
+      document.querySelector("#modal-close-btn").addEventListener("click", () => {
+        document.querySelector("#modal-form").style.display = "none";
+
+      })
+    })
+  })
+})
+
+
+function updateDom(books, arena) {
+  arena.innerHTML = "";
   Object.entries(books).forEach(entry => {
     var [id, book] = entry
     var statement = ""
@@ -58,8 +95,6 @@ addBtn.addEventListener("click", () => {
     statement += `<div class="edit-btn">✏️</div>
         </div>
       </div>`;
-
     arena.innerHTML += statement
   })
-
-})
+}
