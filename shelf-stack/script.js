@@ -15,7 +15,9 @@ function Book(name, author, isRead, isFav) {
   }
 }
 
-var books = []
+var books = {}
+
+var index = 0;
 
 addBtn.addEventListener("click", () => {
   var name = document.querySelector("#book-name").value;
@@ -25,17 +27,19 @@ addBtn.addEventListener("click", () => {
 
   var b = new Book(name, author, read.checked, fav.checked);
 
-  console.log(read.checked);
 
-  console.log(b);
 
-  books.push(b);
+  books[index] = b
+  console.log(books);
+
+  index++;
 
   arena.innerHTML = "";
 
-  books.forEach(book => {
+  Object.entries(books).forEach(entry => {
+    var [id, book] = entry
     var statement = ""
-    statement += `<div class="book">
+    statement += `<div class="book" id="${id}">
           <div class="ls">
             <div class="book-name">${book.name}</div>
             <div class="book-author">${book.author}</div>
